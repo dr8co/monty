@@ -5,7 +5,7 @@ op_env_t op_env = {NULL, NULL, NULL, 0, 1, LIFO};
 /**
  * main - entry point
  * @argc: argument count
- * @argv: argument values
+ * @argv: argument vector
  *
  * Return: Upon success, return EXIT_SUCCESS.
  */
@@ -14,19 +14,19 @@ int main(int argc, char **argv)
 	ssize_t n_read = 0;
 
 	if (argc != 2)
-		pfailure("USAGE: monty file\n");
+        print_err("USAGE: monty file\n");
 
 	if (!freopen(argv[1], "r", stdin))
-		pfailure("Error: Can't open file %s\n", argv[1]);
+        print_err("Error: Can't open file %s\n", argv[1]);
 
-	atexit(free_op_env);
+    atexit(free_env);
 
-	while ((n_read = getline(&op_env.line, &op_env.linesz, stdin)) > 0)
+	while ((n_read = getline(&op_env.line, &op_env.line_size, stdin)) > 0)
 	{
-		op_env.argv = tokenize(op_env.line);
+		op_env.argv = str_to_words(op_env.line);
 
 		if (op_env.argv && **op_env.argv != '#')
-			get_instruction_fn(*op_env.argv)(&op_env.sp);
+            match_opcode_instruction(*op_env.argv)(&op_env.sp);
 
 		free(op_env.argv);
 		op_env.argv = NULL;
