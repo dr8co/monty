@@ -49,7 +49,6 @@ char **str_to_words(char *str)
  * @format: format string.
  * @...: format string parameters.
  *
- * @Return: Void.
  */
 void print_err(const char *format, ...)
 {
