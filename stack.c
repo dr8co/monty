@@ -16,19 +16,19 @@ void op_stack(stack_t **pStack __attribute__((unused)))
  */
 void op_pop(stack_t **pStack)
 {
-    stack_t *top = NULL;
+	stack_t *top = NULL;
 
-    if (!*pStack)
-        print_err("L%u: can't pop an empty stack\n", op_env.lineno);
+	if (!*pStack)
+		print_err("L%u: can't pop an empty stack\n", op_env.lineno);
 
-    if (*pStack != (*pStack)->prev)
-    {
-        top = (*pStack)->prev;
-        (*pStack)->next->prev = top;
-        top->next = (*pStack)->next;
-    }
-    free(*pStack);
-    *pStack = top;
+	if (*pStack != (*pStack)->prev)
+	{
+		top = (*pStack)->prev;
+		(*pStack)->next->prev = top;
+		top->next = (*pStack)->next;
+	}
+	free(*pStack);
+	*pStack = top;
 }
 
 
@@ -38,32 +38,32 @@ void op_pop(stack_t **pStack)
  */
 void op_push(stack_t **pStack)
 {
-    stack_t *new = NULL;
-    const char *nstr = op_env.argv[1];
+	stack_t *new = NULL;
+	const char *nstr = op_env.argv[1];
 
-    if (!(nstr && isinteger(nstr)))
-        print_err("L%u: usage: push integer\n", op_env.lineno);
+	if (!(nstr && isinteger(nstr)))
+		print_err("L%u: usage: push integer\n", op_env.lineno);
 
-    new = malloc(sizeof(*new));
-    if (!new)
-        print_err("Error: malloc failed\n");
+	new = malloc(sizeof(*new));
+	if (!new)
+		print_err("Error: malloc failed\n");
 
-    new->n = atoi(nstr);
-    if (*pStack)
-    {
-        new->prev = (*pStack);
-        new->next = (*pStack)->next;
-        new->next->prev = new;
-        (*pStack)->next = new;
-        if (op_env.mode == LIFO)
-            (*pStack) = new;
-    }
-    else
-    {
-        new->prev = new;
-        new->next = new;
-        (*pStack) = new;
-    }
+	new->n = atoi(nstr);
+	if (*pStack)
+	{
+		new->prev = (*pStack);
+		new->next = (*pStack)->next;
+		new->next->prev = new;
+		(*pStack)->next = new;
+		if (op_env.mode == LIFO)
+			(*pStack) = new;
+	}
+	else
+	{
+		new->prev = new;
+		new->next = new;
+		(*pStack) = new;
+	}
 }
 
 
@@ -73,17 +73,17 @@ void op_push(stack_t **pStack)
  */
 void free_stack(stack_t **pStack)
 {
-    stack_t *top = NULL;
+	stack_t *top = NULL;
 
-    if (pStack && *pStack)
-    {
-        top = *pStack;
-        top->next->prev = NULL;
-        do {
-            *pStack = top->prev;
-            free(top);
-        } while ((top = *pStack));
-    }
+	if (pStack && *pStack)
+	{
+		top = *pStack;
+		top->next->prev = NULL;
+		do {
+			*pStack = top->prev;
+			free(top);
+		} while ((top = *pStack));
+	}
 }
 
 
@@ -92,11 +92,11 @@ void free_stack(stack_t **pStack)
  */
 void free_env(void)
 {
-    free_stack(&op_env.sp);
-    free(op_env.argv);
-    free(op_env.line);
-    op_env.argv = NULL;
-    op_env.line = NULL;
+	free_stack(&op_env.sp);
+	free(op_env.argv);
+	free(op_env.line);
+	op_env.argv = NULL;
+	op_env.line = NULL;
 }
 
 

@@ -9,5 +9,5 @@ void op_pint(stack_t **pStack)
 	if (*pStack)
 		printf("%d\n", (*pStack)->n);
 	else
-        print_err("L%u: can't pint, stack empty\n", op_env.lineno);
+		print_err("L%u: can't pint, stack empty\n", op_env.lineno);
 }

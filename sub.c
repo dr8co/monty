@@ -9,7 +9,7 @@ void op_sub(stack_t **pStack)
 	int to_sub = 0;
 
 	if (!(*pStack && *pStack != (*pStack)->next))
-        print_err("L%u: can't sub, stack too short\n", op_env.lineno);
+		print_err("L%u: can't sub, stack too short\n", op_env.lineno);
 
 	to_sub = (*pStack)->n;
 

@@ -40,7 +40,7 @@ instruction_fn match_opcode_instruction(const char *opcode)
 				return (op->fn);
 			++op;
 		}
-        print_err("L%u: unknown instruction %s\n", op_env.lineno, opcode);
+		print_err("L%u: unknown instruction %s\n", op_env.lineno, opcode);
 	}
 	return (NULL);
 }

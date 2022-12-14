@@ -14,19 +14,19 @@ int main(int argc, char **argv)
 	ssize_t n_read = 0;
 
 	if (argc != 2)
-        print_err("USAGE: monty file\n");
+		print_err("USAGE: monty file\n");
 
 	if (!freopen(argv[1], "r", stdin))
-        print_err("Error: Can't open file %s\n", argv[1]);
+		print_err("Error: Can't open file %s\n", argv[1]);
 
-    atexit(free_env);
+	atexit(free_env);
 
 	while ((n_read = getline(&op_env.line, &op_env.line_size, stdin)) > 0)
 	{
 		op_env.argv = str_to_words(op_env.line);
 
 		if (op_env.argv && **op_env.argv != '#')
-            match_opcode_instruction(*op_env.argv)(&op_env.sp);
+			match_opcode_instruction(*op_env.argv)(&op_env.sp);
 
 		free(op_env.argv);
 		op_env.argv = NULL;

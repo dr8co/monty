@@ -16,6 +16,6 @@ void rot_upward(stack_t **pStack)
  */
 void rot_downward(stack_t **pStack)
 {
-    if (*pStack)
-        *pStack = (*pStack)->next;
+	if (*pStack)
+		*pStack = (*pStack)->next;
 }

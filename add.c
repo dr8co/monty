@@ -9,7 +9,7 @@ void op_add(stack_t **pStack)
 	int to_add = 0;
 
 	if (!(*pStack && *pStack != (*pStack)->next))
-        print_err("L%u: can't add, stack too short\n", op_env.lineno);
+		print_err("L%u: can't add, stack too short\n", op_env.lineno);
 
 	to_add = (*pStack)->n;
 

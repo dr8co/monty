@@ -9,7 +9,7 @@ void op_mul(stack_t **pStack)
 	int to_mul = 0;
 
 	if (!(*pStack && *pStack != (*pStack)->next))
-        print_err("L%u: can't mul, stack too short\n", op_env.lineno);
+		print_err("L%u: can't mul, stack too short\n", op_env.lineno);
 
 	to_mul = (*pStack)->n;
 

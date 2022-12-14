@@ -12,35 +12,35 @@
  */
 char **str_to_words(char *str)
 {
-    char **tokens = NULL;
-    size_t count = 0;
+	char **tokens = NULL;
+	size_t count = 0;
 
-    if (!str)
-        return (NULL);
+	if (!str)
+		return (NULL);
 
-    count = count_words(str);
-    if (!count)
-        return (NULL);
+	count = count_words(str);
+	if (!count)
+		return (NULL);
 
-    tokens = malloc(sizeof(char *) * (count + 1));
-    if (!tokens)
-        return (NULL);
+	tokens = malloc(sizeof(char *) * (count + 1));
+	if (!tokens)
+		return (NULL);
 
-    for (count = 0; *str; ++count)
-    {
-        while (isspace(*str))
-            *str++ = '\0';
-        if (*str)
-            tokens[count] = str;
-        else
-            break;
-        do {
-            ++str;
-        } while (*str && !isspace(*str));
-    }
-    tokens[count] = NULL;
+	for (count = 0; *str; ++count)
+	{
+		while (isspace(*str))
+			*str++ = '\0';
+		if (*str)
+			tokens[count] = str;
+		else
+			break;
+		do {
+			++str;
+		} while (*str && !isspace(*str));
+	}
+	tokens[count] = NULL;
 
-    return (tokens);
+	return (tokens);
 }
 
 
@@ -53,15 +53,15 @@ char **str_to_words(char *str)
  */
 void print_err(const char *format, ...)
 {
-    va_list args;
+	va_list args;
 
-    va_start(args, format);
+	va_start(args, format);
 
-    vfprintf(stderr, format, args);
+	vfprintf(stderr, format, args);
 
-    va_end(args);
+	va_end(args);
 
-    exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 
@@ -73,16 +73,16 @@ void print_err(const char *format, ...)
  */
 int isinteger(const char *str)
 {
-    if (*str == '-' || *str == '+')
-        ++str;
+	if (*str == '-' || *str == '+')
+		++str;
 
-    if (!*str)
-        return (0);
+	if (!*str)
+		return (0);
 
-    while (isdigit(*str))
-        ++str;
+	while (isdigit(*str))
+		++str;
 
-    return (!*str);
+	return (!*str);
 }
 
 
@@ -94,19 +94,19 @@ int isinteger(const char *str)
  */
 size_t count_words(const char *str)
 {
-    size_t count = 0;
+	size_t count = 0;
 
-    while (*str)
-    {
-        while (isspace(*str))
-            ++str;
-        if (!*str)
-            break;
-        do {
-            ++str;
-        } while (*str && !isspace(*str));
+	while (*str)
+	{
+		while (isspace(*str))
+			++str;
+		if (!*str)
+			break;
+		do {
+			++str;
+		} while (*str && !isspace(*str));
 
-        ++count;
-    }
-    return (count);
+		++count;
+	}
+	return (count);
 }
