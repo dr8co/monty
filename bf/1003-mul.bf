@@ -1,3 +1,5 @@
+This program reads two digits from stdin; multiply them; and print
+the result; followed by a new line
 >>
 ,
 ------------------------------------------------
