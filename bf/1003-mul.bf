@@ -1,4 +1,4 @@
-This program reads two digits from stdin; multiply them; and print
+This program reads two digits from stdin; multiplies them; and prints
 the result; followed by a new line
 >>
 ,
